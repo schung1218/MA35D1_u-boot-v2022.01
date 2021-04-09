@@ -1,0 +1,10 @@
+menu "Nuvoton specific command line interface"
+
+config CMD_NU_AES
+	bool "Enable the command for AES decrypt image"
+	depends on MA35D1_CRYPTO
+	help
+	   Support decrypt the kernel image with Nuvoton
+	   MA35D1 on-chip cryptographic accelerator. 
+
+endmenu

@@ -702,7 +702,7 @@ int designware_initialize(ulong base_addr, u32 interface)
 #endif
 
 #ifdef CONFIG_DM_ETH
-static int designware_eth_start(struct udevice *dev)
+int designware_eth_start(struct udevice *dev)
 {
 	struct eth_pdata *pdata = dev_get_plat(dev);
 	struct dw_eth_dev *priv = dev_get_priv(dev);

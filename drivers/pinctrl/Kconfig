@@ -300,6 +300,7 @@ config PINCTRL_K210
 	  basic GPIO functions, such as reading the current value of a pin.
 endif
 
+source "drivers/pinctrl/nuvoton/Kconfig"
 source "drivers/pinctrl/broadcom/Kconfig"
 source "drivers/pinctrl/exynos/Kconfig"
 source "drivers/pinctrl/intel/Kconfig"

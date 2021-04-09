@@ -499,6 +499,12 @@ config MXC_SPI
 config SYNQUACER_SPI
 	bool "Socionext SynQuacer HS-SPI driver"
 	depends on ARCH_SYNQUACER
+
+config MA35D1_SPI
+        bool "MA35D1 SPI driver"
+
+config OMAP3_SPI
+	bool "McSPI driver for OMAP"
 	help
 	  Enable the Socionext HS-SPI driver for SynQuacer. This driver can
 	  be used to access the SPI interface and SPI NOR flash on platforms

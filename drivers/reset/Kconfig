@@ -206,4 +206,12 @@ config RESET_ZYNQMP
 	  passing request via Xilinx firmware interface to TF-A and PMU
 	  firmware.
 
+config RESET_MA35D1
+	select REGMAP
+	select SYSCON
+	bool "MA35D1 Reset Driver"
+	depends on DM_RESET && MA35D1
+	default y
+	help
+	  Support for reset controller on MA35D1 SoC
 endmenu

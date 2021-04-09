@@ -524,3 +524,11 @@ config NOMADIK_GPIO
 	  defined in the device tree with one node for each bank.
 
 endif
+
+config MA35D1_GPIO
+        bool "MA35D1 GPIO driver"
+	depends on DM_GPIO
+        help
+          This driver supports the GPIO banks on NUVOTON MA35D1 SoCs.
+
+endmenu

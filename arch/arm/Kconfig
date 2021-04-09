@@ -790,6 +790,13 @@ config ARCH_MEDIATEK
 	  Support for the MediaTek SoCs family developed by MediaTek Inc.
 	  Please refer to doc/README.mediatek for more information.
 
+config ARCH_NUVOTON
+	bool "Nuvoton SoCs"
+	select DM
+	select OF_CONTROL
+	help
+	  Support for the MA35D1 developed by Nuvoton Technology Corporation.
+
 config ARCH_LPC32XX
 	bool "NXP LPC32xx platform"
 	select CPU_ARM926EJS
@@ -2107,6 +2114,8 @@ source "arch/arm/mach-rmobile/Kconfig"
 source "arch/arm/mach-meson/Kconfig"
 
 source "arch/arm/mach-mediatek/Kconfig"
+
+source "arch/arm/mach-nuvoton/Kconfig"
 
 source "arch/arm/mach-qemu/Kconfig"
 

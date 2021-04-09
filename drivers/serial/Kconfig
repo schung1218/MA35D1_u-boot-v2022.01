@@ -449,6 +449,13 @@ config DEBUG_UART_MT7620
 	help
 	  Select this to enable a debug UART using the UART driver for
 	  MediaTek MT7620 and earlier SoCs.
+
+config DEBUG_UART_NUVOTON
+	bool "NUVOTON UART"
+	depends on NUVOTON_SERIAL
+	help
+	  Select this to enable a debug UART using the Nuvoton
+	  UART driver.
 	  You will need to provide parameters to make this work. The
 	  driver will be available until the real driver model serial is
 	  running.
@@ -905,6 +912,7 @@ config MTK_SERIAL
 	  The High-speed UART is compatible with the ns16550a UART and have
 	  its own high-speed registers.
 
+<<<<<<< HEAD
 config MT7620_SERIAL
 	bool "UART driver for MediaTek MT7620 and earlier SoCs"
 	depends on DM_SERIAL
@@ -914,6 +922,15 @@ config MT7620_SERIAL
 	  binding to operate.
 	  The UART driver for MediaTek MT7620 and earlier SoCs is *NOT*
 	  compatible with the ns16550a UART.
+=======
+config NUVOTON_SERIAL
+	bool "Nuvoton UART support"
+	default y
+	help
+	  Select this to enable UART support for Nuvoton UART
+	  devices. This driver uses driver model and requires a device
+	  tree binding to operate.
+>>>>>>> Add MA35D1 support
 
 config MPC8XX_CONS
 	bool "Console driver for MPC8XX"

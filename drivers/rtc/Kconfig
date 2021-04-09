@@ -203,4 +203,10 @@ config RTC_ZYNQMP
 	  Say "yes" here to support the on chip real time clock
 	  present on Xilinx ZynqMP SoC.
 
+config RTC_MA35D1
+	bool "Enable MA35D1 RTC driver"
+	depends on DM_RTC
+	help
+	  Enable MA35D1 RTC driver.
+
 endmenu

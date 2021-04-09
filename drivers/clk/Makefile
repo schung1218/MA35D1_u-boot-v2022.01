@@ -15,6 +15,7 @@ obj-y += analogbits/
 obj-y += imx/
 obj-y += tegra/
 obj-y += ti/
+obj-y += nuvoton/
 obj-$(CONFIG_ARCH_ASPEED) += aspeed/
 obj-$(CONFIG_ARCH_MEDIATEK) += mediatek/
 obj-$(CONFIG_ARCH_MTMIPS) += mtmips/

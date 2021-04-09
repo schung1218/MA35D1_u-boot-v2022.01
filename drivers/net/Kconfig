@@ -849,4 +849,13 @@ config MDIO_MUX_MESON_G12A
 	  This driver is used for the MDIO mux found on the Amlogic G12A & compatible
 	  SoCs.
 
+config GMAC_MA35D1
+	bool "Nuvoton MA35D1 GMAC"
+	depends on DM_ETH && ETH_DESIGNWARE
+	select SYSCON
+	select REGMAP
+	help
+	  This driver provides Nuvoton MA35D1 network support based on the
+	  Synopsys Designware driver.
+
 endif # NETDEVICES

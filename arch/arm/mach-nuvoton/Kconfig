@@ -1,0 +1,19 @@
+if ARCH_NUVOTON
+
+config SYS_SOC
+	default "nuvoton"
+
+config SYS_VENDOR
+	default "nuvoton"
+
+config MA35D1
+	select ARM64
+	select DM
+	select DM_ETH
+	bool "Nuvoton MA35D1"
+	default y
+
+source "arch/arm/mach-nuvoton/ma35d1/Kconfig"
+source "board/nuvoton/ma35d1/Kconfig"
+
+endif

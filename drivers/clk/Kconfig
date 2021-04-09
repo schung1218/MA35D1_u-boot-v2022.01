@@ -229,4 +229,11 @@ config CLK_VERSACLOCK
 	  This driver supports the IDT VersaClock 5 and VersaClock 6
 	  programmable clock generators.
 
+config MA35D1_CLK_CCF
+	bool "MA35D1 Common Clock Framework [CCF] support "
+	depends on CLK
+	select CLK_CCF
+	help
+	  Enable the MA35D1 clock driver.
+
 endmenu

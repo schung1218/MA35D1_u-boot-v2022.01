@@ -555,6 +555,12 @@ config SYS_I2C_OCTEON
 	  chips have several I2C ports and all are provided, controlled by
 	  the device tree.
 
+config SYS_I2C_MA35D1
+	bool "MA35D1 I2C driver"
+	depends on DM_I2C
+	help
+	  Enable I2C support for MA35D1.
+
 config SYS_I2C_S3C24X0
 	bool "Samsung I2C driver"
 	depends on (ARCH_EXYNOS4 || ARCH_EXYNOS5) && DM_I2C

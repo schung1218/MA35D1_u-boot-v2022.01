@@ -1,6 +1,12 @@
 menu "Hardware crypto devices"
 
 source drivers/crypto/hash/Kconfig
+config MA35D1_CRYPTO
+	bool "Nuvoton MA35D1 cryptographic accelerator."
+	depends on MA35D1
+	default y
+	help
+	  Enables support for the on-chip cryptographic accelerator on MA35D1.
 
 source drivers/crypto/fsl/Kconfig
 
