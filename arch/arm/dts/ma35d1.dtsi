@@ -572,7 +572,7 @@
 
 
 		u-boot,dm-pre-reloc;
-		status = "okay";
+		status = "disabled";
 
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -588,15 +588,6 @@
 			reg = <0>;
 		};
 		#endif
-		spi-nand@0 {
-			#address-cells = <1>;
-			#size-cells = <1>;
-			compatible = "spi-nand";
-			spi-max-frequency = <30000000>;
-			spi-tx-bus-width = <1>;
-			spi-rx-bus-width = <4>;
-			reg = <0>;
-		};
 	};
 
 	nand: nand@401A0000 {

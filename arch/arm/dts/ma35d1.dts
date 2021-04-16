@@ -26,7 +26,36 @@
 	status = "okay";
 };
 
+&qspi0 {
+        status = "okay";
 
+	#address-cells = <1>;
+	#size-cells = <0>;
+	spi-nand@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "spi-nand";
+		spi-max-frequency = <30000000>;
+		spi-tx-bus-width = <1>;
+		spi-rx-bus-width = <4>;
+		reg = <0>;
+
+		partition@0 {
+			label = "u-boot";
+			reg = <0 0x200000>;
+		};
+
+		partition@1 {
+			label = "linux";
+			reg = <0x200000 0xC00000>;
+		};
+
+		partition@2 {
+			label = "UBI";
+			reg = <0xE00000 0x6E00000>;
+		};
+	};
+};
 
 
 
