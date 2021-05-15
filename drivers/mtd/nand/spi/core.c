@@ -476,6 +476,23 @@ static int spinand_reset_op(struct spinand_device *spinand)
 	return spinand_wait(spinand, NULL);
 }
 
+static int spinand_66_99_op(struct spinand_device *spinand)
+{
+	struct spi_mem_op op = SPINAND_66_OP;
+	struct spi_mem_op op2 = SPINAND_99_OP;
+	int ret;
+
+	ret = spi_mem_exec_op(spinand->slave, &op);
+	if (ret)
+		return ret;
+
+	ret = spi_mem_exec_op(spinand->slave, &op2);
+	if (ret)
+		return ret;
+
+	return spinand_wait(spinand, NULL);
+}
+
 static int spinand_lock_block(struct spinand_device *spinand, u8 lock)
 {
 	return spinand_write_reg_op(spinand, REG_BLOCK_LOCK, lock);
@@ -966,6 +983,10 @@ static int spinand_detect(struct spinand_device *spinand)
 {
 	struct nand_device *nand = spinand_to_nand(spinand);
 	int ret;
+
+	ret = spinand_66_99_op(spinand);
+	if (ret)
+		return ret;
 
 	ret = spinand_reset_op(spinand);
 	if (ret)
