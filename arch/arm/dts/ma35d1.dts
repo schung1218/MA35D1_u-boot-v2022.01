@@ -39,28 +39,6 @@
 		spi-tx-bus-width = <1>;
 		spi-rx-bus-width = <4>;
 		reg = <0>;
-
-		partition@0 {
-			label = "uboot";
-			reg = <0 0x200000>;
-		};
-		partition@1 {
-			label = "uboot-env";
-			reg = <0x200000 0xC00000>;
-		};
-		partition@2 {
-			label = "linux-device-tree";
-			reg = <0x280000 0x400000>;
-		};
-		partition@3 {
-			label = "linux";
-			reg = <0x300000 0xB00000>;
-		};
-
-		partition@4 {
-			label = "rootfs";
-			reg = <0xE00000 0x6E00000>;
-		};
 	};
 };
 
