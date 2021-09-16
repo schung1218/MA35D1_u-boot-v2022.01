@@ -1142,6 +1142,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
 
 dtb-$(CONFIG_ARCH_NUVOTON) += \
 	ma35d1.dtb \
+	ma35d1-sdcard0.dtb
 
 dtb-$(CONFIG_TARGET_GE_BX50V3) += \
 	imx6q-bx50v3.dtb \
