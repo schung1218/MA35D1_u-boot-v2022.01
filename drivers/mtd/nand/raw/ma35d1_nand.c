@@ -37,7 +37,7 @@
 
 /* NAND-type Flash Registers */
 #define REG_NFI_NANDCTL		(0x8A0)	/* NAND Flash Control Register */
-#define NFI_NANDTMCTL		(0x8A4)	/* NAND Flash Timing Control Register */
+#define REG_NFI_NANDTMCTL	(0x8A4)	/* NAND Flash Timing Control Register */
 #define REG_NFI_NANDINTEN	(0x8A8)	/* NAND Flash Interrupt Enable Register */
 #define REG_NFI_NANDINTSTS	(0x8AC)	/* NAND Flash Interrupt Status Register */
 #define REG_NFI_NANDCMD		(0x8B0)	/* NAND Flash Command Port Register */
@@ -187,7 +187,7 @@ static int ma35d1_waitfunc(struct mtd_info *mtd, struct nand_chip *chip)
 			status = 0;
 			break;
 		}
-		if (get_timer(time) > 400)
+		if (get_timer(time) > 3000)
 		{
 			pr_err("R/B# timeout!\n");
 			break;
@@ -738,7 +738,7 @@ int ma35d1_nand_init(struct ma35d1_nand_info *nand_info)
 	writel(NAND_EN, nand_info->reg+REG_NFI_GCTL);
 
 	// Enable SM_CS0
-	writel(readl(nand_info->reg+REG_NFI_NANDCTL) & (~0x02000000), nand_info->reg+REG_NFI_NANDCTL);
+	writel((readl(nand_info->reg+REG_NFI_NANDCTL) & (~0x02000000))|0x4000000, nand_info->reg+REG_NFI_NANDCTL);
 	writel(0x1, nand_info->reg+REG_NFI_NANDECTL); /* un-lock write protect */
 
 	// NAND Reset
@@ -752,7 +752,12 @@ int ma35d1_nand_init(struct ma35d1_nand_info *nand_info)
 
 	//Set PSize bits of SMCSR register to select NAND card page size
 	reg = readl(nand_info->reg+REG_NFI_NANDCTL) & (~0x30000);
-	writel(reg | (mtd->writesize << 5), nand_info->reg+REG_NFI_NANDCTL);
+	if (mtd->writesize == 2048)
+		writel(reg | 0x10000, nand_info->reg+REG_NFI_NANDCTL);
+	else if (mtd->writesize == 4096)
+		writel(reg | 0x20000, nand_info->reg+REG_NFI_NANDCTL);
+	else if (mtd->writesize == 8192)
+		writel(reg | 0x30000, nand_info->reg+REG_NFI_NANDCTL);
 
 	if (nand->ecc.strength == 0) {
 		nand_info->eBCHAlgo = 0; /* No ECC */
@@ -779,8 +784,6 @@ int ma35d1_nand_init(struct ma35d1_nand_info *nand_info)
 	nand->ecc.bytes = ma35d1_nand_oob.eccbytes / nand->ecc.steps;
 	nand->ecc.total = ma35d1_nand_oob.eccbytes;
 	//mtd_set_ooblayout(mtd, &ma35d1_ooblayout_ops);
-
-	nand->options = 0;
 
 	// Redundant area size
 	writel(nand_info->m_i32SMRASize , nand_info->reg+REG_NFI_NANDRACTL);
