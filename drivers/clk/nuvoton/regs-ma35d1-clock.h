@@ -26,11 +26,6 @@
 #define REG_CLK_CLKOCTL     (0x40)    /* Clock Output Control Register (Write Protect) */
 #define REG_CLK_STATUS      (0x50)    /* Clock Status Monitor Register  */
 #define REG_CLK_PLL0CTL0    (0x60)    /* CA-pLL Control Register 0(Write Protect) */
-#define REG_CLK_PLL0CTL1    (0x64)    /* CA-pLL Control Register 1(Write Protect) */
-#define REG_CLK_PLL0CTL2    (0x68)    /* CA-pLL Control Register 2(Write Protect) */
-#define REG_CLK_PLL1CTL0    (0x70)    /* SYS-pLL Control Register 0(Write Protect) */
-#define REG_CLK_PLL1CTL1    (0x74)    /* SYS-pLL Control Register 1(Write Protect) */
-#define REG_CLK_PLL1CTL2    (0x78)    /* SYS-pLL Control Register 2(Write Protect) */
 #define REG_CLK_PLL2CTL0    (0x80)    /* DDR-pLL Control Register 0(Write Protect) */
 #define REG_CLK_PLL2CTL1    (0x84)    /* DDR-pLL Control Register 1(Write Protect) */
 #define REG_CLK_PLL2CTL2    (0x88)    /* DDR-pLL Control Register 2(Write Protect) */
@@ -43,13 +38,6 @@
 #define REG_CLK_PLL5CTL0    (0xB0)    /* VPLL Control Register 0(Write Protect) */
 #define REG_CLK_PLL5CTL1    (0xB4)    /* VPLL Control Register 1(Write Protect) */
 #define REG_CLK_PLL5CTL2    (0xB8)    /* VPLL Control Register 2(Write Protect) */
-#define REG_CLK_CLKDCTL     (0xC0)    /* Clock Fail Detector Control Register(Write Protect) */
-#define REG_CLK_CLKDSTS     (0xC4)    /* Clock Fail Detector Status Register(Write Protect) */
-#define REG_CLK_CDUPB       (0xC8)    /* Clock Frequency Detector Upper Boundary Register(Write Protect) */
-#define REG_CLK_CDLOWB      (0xCC)    /* Clock Frequency Detector Lower Boundary Register(Write Protect) */
-#define REG_CLK_CKFLTRCTL   (0xD0)    /* Clock Filter Control Register (Write Protect) */
-#define REG_CLK_TESTCLK     (0xF0)    /* Test Clock Control Register */
-
 
 /**
     @addtogroup CLK_CONST CLK Bit Field Definition
@@ -465,9 +453,6 @@
 #define CLK_CLKSEL0_DCUSEL_Pos           (24)                                              /*!< CLK_T::CLKSEL0: DCUSEL Position       */
 #define CLK_CLKSEL0_DCUSEL_Msk           (0x1ul << CLK_CLKSEL0_DCUSEL_Pos)                 /*!< CLK_T::CLKSEL0: DCUSEL Mask           */
 
-#define CLK_CLKSEL0_DCUPSEL_Pos          (25)                                              /*!< CLK_T::CLKSEL0: DCUPSEL Position       */
-#define CLK_CLKSEL0_DCUPSEL_Msk          (0x1ul << CLK_CLKSEL0_DCUPSEL_Pos)                /*!< CLK_T::CLKSEL0: DCUPSEL Mask           */
-
 #define CLK_CLKSEL0_GFXSEL_Pos           (26)                                              /*!< CLK_T::CLKSEL0: GFXSEL Position       */
 #define CLK_CLKSEL0_GFXSEL_Msk           (0x1ul << CLK_CLKSEL0_GFXSEL_Pos)                 /*!< CLK_T::CLKSEL0: GFXSEL Mask           */
 
@@ -631,7 +616,7 @@
 #define CLK_CLKDIV0_SDH1DIV_Msk          (0x7ul << CLK_CLKDIV0_SDH1DIV_Pos)                /*!< CLK_T::CLKDIV0: SDH1DIV Mask           */
 
 #define CLK_CLKDIV0_DCUPDIV_Pos          (24)                                              /*!< CLK_T::CLKDIV0: DCUPDIV Position       */
-#define CLK_CLKDIV0_DCUPDIV_Msk          (0x3ul << CLK_CLKDIV0_DCUPDIV_Pos)                /*!< CLK_T::CLKDIV0: DCUPDIV Mask           */
+#define CLK_CLKDIV0_DCUPDIV_Msk          (0x7ul << CLK_CLKDIV0_DCUPDIV_Pos)                /*!< CLK_T::CLKDIV0: DCUPDIV Mask           */
 
 #define CLK_CLKDIV0_EMAC0DIV_Pos         (28)                                              /*!< CLK_T::CLKDIV0: EMAC0DIV Position     */
 #define CLK_CLKDIV0_EMAC0DIV_Msk         (0x3ul << CLK_CLKDIV0_EMAC0DIV_Pos)               /*!< CLK_T::CLKDIV0: EMAC0DIV Mask         */
@@ -665,7 +650,6 @@
 
 #define CLK_CLKDIV1_UART3DIV_Pos         (28)                                              /*!< CLK_T::CLKDIV1: UART3DIV Position      */
 #define CLK_CLKDIV1_UART3DIV_Msk         (0xful << CLK_CLKDIV1_UART3DIV_Pos)               /*!< CLK_T::CLKDIV1: UART3DIV Mask          */
-
 
 #define CLK_CLKDIV2_UART4DIV_Pos         (0)                                               /*!< CLK_T::CLKDIV2: UART4DIV Position      */
 #define CLK_CLKDIV2_UART4DIV_Msk         (0xful << CLK_CLKDIV2_UART4DIV_Pos)               /*!< CLK_T::CLKDIV2: UART4DIV Mask          */
@@ -720,5 +704,47 @@
 
 #define CLK_CLKDIV4_KPIDIV_Pos           (24)                                              /*!< CLK_T::CLKDIV4: KPIDIV Position         */
 #define CLK_CLKDIV4_KPIDIV_Msk           (0xfful << CLK_CLKDIV4_KPIDIV_Pos)                /*!< CLK_T::CLKDIV4: KPIDIV Mask             */
+
+#define SMICPLLCTL0_FBDIV_POS		(0)
+#define SMICPLLCTL0_FBDIV_MSK		(0xfful << SMICPLLCTL0_FBDIV_POS)
+
+#define SMICPLLCTL0_INDIV_POS		(8)
+#define SMICPLLCTL0_INDIV_MSK		(0xful << SMICPLLCTL0_INDIV_POS)
+
+#define SMICPLLCTL0_OUTDIV_POS		(12)
+#define SMICPLLCTL0_OUTDIV_MSK		(0x3ul << SMICPLLCTL0_OUTDIV_POS)
+
+#define SMICPLLCTL0_PD_POS		(16)
+#define SMICPLLCTL0_PD_MSK		(0x1ul << SMICPLLCTL0_PD_POS)
+
+#define SMICPLLCTL0_BP_POS		(17)
+#define SMICPLLCTL0_BP_MSK		(0x1ul << SMICPLLCTL0_BP_POS)
+
+#define VSIPLLCTL0_FBDIV_POS		(0)
+#define VSIPLLCTL0_FBDIV_MSK		(0x7fful << VSIPLLCTL0_FBDIV_POS)
+
+#define VSIPLLCTL0_INDIV_POS		(12)
+#define VSIPLLCTL0_INDIV_MSK		(0x3ful << VSIPLLCTL0_INDIV_POS)
+
+#define VSIPLLCTL0_MODE_POS		(18)
+#define VSIPLLCTL0_MODE_MSK		(0x3ul << VSIPLLCTL0_MODE_POS)
+
+#define VSIPLLCTL0_SSRATE_POS		(20)
+#define VSIPLLCTL0_SSRATE_MSK		(0x7fful << VSIPLLCTL0_SSRATE_POS)
+
+#define VSIPLLCTL1_PD_POS		(0)
+#define VSIPLLCTL1_PD_MSK		(0x1ul << VSIPLLCTL1_PD_POS)
+
+#define VSIPLLCTL1_BP_POS		(1)
+#define VSIPLLCTL1_BP_MSK		(0x1ul << VSIPLLCTL1_BP_POS)
+
+#define VSIPLLCTL1_OUTDIV_POS		(4)
+#define VSIPLLCTL1_OUTDIV_MSK		(0x7ul << VSIPLLCTL1_OUTDIV_POS)
+
+#define VSIPLLCTL1_FRAC_POS		(8)
+#define VSIPLLCTL1_FRAC_MSK		(0xfffffful << VSIPLLCTL1_FRAC_POS)
+
+#define VSIPLLCTL2_SLOPE_POS		(0)
+#define VSIPLLCTL2_SLOPE_MSK		(0xfffffful << VSIPLLCTL2_SLOPE_POS)
 
 #endif /*  __DRIVERS_CLK_NUVOTON_REGS_MA35D1_CLOCK_H */
