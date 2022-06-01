@@ -103,6 +103,26 @@ struct ma35d1_fb_priv {
 	struct clk pixclock;
 };
 
+#define REG_SYS_RLKTZNS 0x1A4
+static void CLK_UnLockReg(struct regmap *regmap)
+{
+	uint ret;
+
+	/* Unlock PLL registers */
+	do {
+		regmap_write(regmap, REG_SYS_RLKTZNS, 0x59);
+		regmap_write(regmap, REG_SYS_RLKTZNS, 0x16);
+		regmap_write(regmap, REG_SYS_RLKTZNS, 0x88);
+		regmap_read(regmap, REG_SYS_RLKTZNS, &ret);
+	}while(ret == 0);
+}
+
+static void CLK_LockReg(struct regmap *regmap)
+{
+	/* Lock PLL registers */
+	regmap_write(regmap, REG_SYS_RLKTZNS, 0x0);
+}
+
 static ulong ma35d1_fb_cal_pixel_clk_rate(ulong PllSrcClk, ulong rate,
         u32 *u32Reg)
 {
@@ -228,7 +248,7 @@ static int ma35d1_fb_video_probe(struct udevice *dev)
 	struct video_uc_platdata *plat = dev_get_uclass_platdata(dev);
 	struct video_priv *uc_priv = dev_get_uclass_priv(dev);
 	struct ma35d1_fb_priv *priv = dev_get_priv(dev);
-	struct regmap *regmap;
+	struct regmap *regmap, *regmap_sys;
 	u32 u32Reg[2] = {0};
 	struct ofnode_phandle_args args;
 	ofnode node;
@@ -327,9 +347,12 @@ static int ma35d1_fb_video_probe(struct udevice *dev)
 	priv->pixclock.rate = ma35d1_fb_cal_pixel_clk_rate(24000000,
 	                      priv->pixclock.rate, u32Reg);
 
+	regmap_sys = syscon_regmap_lookup_by_phandle(dev,"nuvoton,sys");
+	CLK_UnLockReg(regmap_sys);
 	/* Set Pixel Clock */
 	regmap_write(regmap, REG_CLK_PLL5CTL0, u32Reg[0]);
 	regmap_write(regmap, REG_CLK_PLL5CTL1, u32Reg[1]);
+	CLK_LockReg(regmap_sys);
 
 	/* Reset */
 	ret = reset_get_by_index(dev, 0, &priv->rst);

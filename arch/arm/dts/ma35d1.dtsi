@@ -739,6 +739,7 @@
 		compatible = "nuvoton,ma35d1-fb";
 		reg = <0x0 0x40260000 0x0 0x2000>;
 		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+		nuvoton,sys = <&sys>;
 		nuvoton,clk = <&clk>;
 		clocks = <&clk dcu_gate>;
 		resets = <&reset MA35D1_RESET_DISP>;
