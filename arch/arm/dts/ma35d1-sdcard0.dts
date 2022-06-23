@@ -8,7 +8,7 @@
 #include "ma35d1.dtsi"
 
 / {
-	model = "Nuvoton MA35D1 EVB board";
+	model = "Nuvoton MA35D1 U-boot";
 	compatible = "nuvoton,ma35d1";
 
 	aliases {

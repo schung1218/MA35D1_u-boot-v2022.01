@@ -332,6 +332,14 @@
 			drive-strength = <3>; /* 0 ~ 7 */
 		};
 
+		pcfg_sdhci_3_3V: pcfg-sdhci_3_3V {
+			slew-rate = <0>; /* 0:normal, 1:high */
+			input-schmitt-disable;  /* input-schmitt-disable, input-schmitt-enable */
+			bias-disable; /* bias-disable, bias-pull-up, bias-pull-down  */
+			power-source = <3300>; /* 1800:1.8v , 3300:3.3v */
+			drive-strength = <2>; /* 0 ~ 7 */
+		};
+
 		pcfg_emac_1_8V: pcfg-pcfg_emac_1_8V {
 			slew-rate = <0>; /* 0:normal, 1:high */
 			input-schmitt-enable;  /* input-schmitt-disable, input-schmitt-enable */
@@ -364,36 +372,36 @@
 		sdhci0 {
 			pinctrl_sdhci0: sdhci0grp{
 				nuvoton,pins =
-					<SYS_GPC_MFPL_PC0MFP_eMMC0_CMD   &pcfg_default>,
-					<SYS_GPC_MFPL_PC1MFP_eMMC0_CLK   &pcfg_default>,
-					<SYS_GPC_MFPL_PC2MFP_eMMC0_DAT0  &pcfg_default>,
-					<SYS_GPC_MFPL_PC3MFP_eMMC0_DAT1  &pcfg_default>,
-					<SYS_GPC_MFPL_PC4MFP_eMMC0_DAT2  &pcfg_default>,
-					<SYS_GPC_MFPL_PC5MFP_eMMC0_DAT3  &pcfg_default>,
-					<SYS_GPC_MFPL_PC6MFP_SD0_nCD     &pcfg_default>,
-					<SYS_GPC_MFPL_PC7MFP_SD0_WP      &pcfg_default>,
-					<SYS_GPC_MFPH_PC8MFP_eMMC0_DAT4  &pcfg_default>,
-					<SYS_GPC_MFPH_PC9MFP_eMMC0_DAT5  &pcfg_default>,
-					<SYS_GPC_MFPH_PC10MFP_eMMC0_DAT6 &pcfg_default>,
-					<SYS_GPC_MFPH_PC11MFP_eMMC0_DAT7 &pcfg_default>;
+					<SYS_GPC_MFPL_PC0MFP_eMMC0_CMD   &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC1MFP_eMMC0_CLK   &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC2MFP_eMMC0_DAT0  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC3MFP_eMMC0_DAT1  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC4MFP_eMMC0_DAT2  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC5MFP_eMMC0_DAT3  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC6MFP_SD0_nCD     &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPL_PC7MFP_SD0_WP      &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPH_PC8MFP_eMMC0_DAT4  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPH_PC9MFP_eMMC0_DAT5  &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPH_PC10MFP_eMMC0_DAT6 &pcfg_sdhci_3_3V>,
+					<SYS_GPC_MFPH_PC11MFP_eMMC0_DAT7 &pcfg_sdhci_3_3V>;
 			};
 		};
 
 		sdhci1 {
 			pinctrl_sdhci1: sdhci1grp{
 				nuvoton,pins =
-					<SYS_GPJ_MFPL_PJ0MFP_eMMC1_DAT4  &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ1MFP_eMMC1_DAT5  &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ2MFP_eMMC1_DAT6  &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ3MFP_eMMC1_DAT7  &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ4MFP_SD1_WP      &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ5MFP_SD1_nCD     &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ6MFP_eMMC1_CMD   &pcfg_default>,
-					<SYS_GPJ_MFPL_PJ7MFP_eMMC1_CLK   &pcfg_default>,
-					<SYS_GPJ_MFPH_PJ8MFP_eMMC1_DAT0  &pcfg_default>,
-					<SYS_GPJ_MFPH_PJ9MFP_eMMC1_DAT1  &pcfg_default>,
-					<SYS_GPJ_MFPH_PJ10MFP_eMMC1_DAT2 &pcfg_default>,
-					<SYS_GPJ_MFPH_PJ11MFP_eMMC1_DAT3 &pcfg_default>;
+					<SYS_GPJ_MFPL_PJ0MFP_eMMC1_DAT4  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ1MFP_eMMC1_DAT5  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ2MFP_eMMC1_DAT6  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ3MFP_eMMC1_DAT7  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ4MFP_SD1_WP      &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ5MFP_SD1_nCD     &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ6MFP_eMMC1_CMD   &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPL_PJ7MFP_eMMC1_CLK   &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPH_PJ8MFP_eMMC1_DAT0  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPH_PJ9MFP_eMMC1_DAT1  &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPH_PJ10MFP_eMMC1_DAT2 &pcfg_sdhci_3_3V>,
+					<SYS_GPJ_MFPH_PJ11MFP_eMMC1_DAT3 &pcfg_sdhci_3_3V>;
 			};
 		};
 
@@ -653,7 +661,6 @@
 		clock-names = "core";
 		bus-width = <4>;
 		max-frequency = <180000000>;
-		sdhci,auto-cmd12;
 		no-1-8-v;
 		status = "disabled";
 	};
@@ -669,7 +676,6 @@
 		clock-names = "core";
 		bus-width = <8>;
 		max-frequency = <180000000>;
-		sdhci,auto-cmd12;
 		no-1-8-v;
 		status = "okay";
 	};
