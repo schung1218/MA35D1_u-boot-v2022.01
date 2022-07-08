@@ -146,7 +146,7 @@ static int ma35d1_read_rom_hwaddr(struct udevice *dev)
 	eth_pdata->enetaddr[3] = (reg >> 16) & 0xFF;
 	eth_pdata->enetaddr[2] = (reg >> 24) & 0xFF;
 	regmap_read(pdata->regmap,
-		    pdata->id == 0 ? REG_SYS_MACAD0HSR : REG_SYS_MACAD1LSR,
+		    pdata->id == 0 ? REG_SYS_MACAD0HSR : REG_SYS_MACAD1HSR,
 		    &reg);
 	eth_pdata->enetaddr[1] = reg & 0xFF;
 	eth_pdata->enetaddr[0] = (reg >> 8) & 0xFF;
