@@ -9,6 +9,7 @@
 #include <common.h>
 #include <dm.h>
 #include <dm/device_compat.h>
+#include <dm/device.h>
 #include <dm/uclass.h>
 #include <dm/pinctrl.h>
 #include <linux/io.h>
@@ -708,7 +709,7 @@ int ma35d1_nand_init(struct ma35d1_nand_info *nand_info)
 	nand_set_controller_data(nand, nand_info);
 	nand->options |= NAND_NO_SUBPAGE_WRITE;
 
-	nand->flash_node = dev_of_offset(nand_info->dev);
+	//nand->flash_node = dev_of_offset(nand_info->dev);  //schung
 	/* hwcontrol always must be implemented */
 	nand->cmd_ctrl = ma35d1_hwcontrol;
 	nand->cmdfunc = ma35d1_nand_command;
@@ -833,7 +834,7 @@ U_BOOT_DRIVER(ma35d1_nand) = {
 	.id = UCLASS_MTD,
 	.of_match = ma35d1_nand_ids,
 	.probe = ma35d1_nand_probe,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_nand_info),
+	.priv_auto = sizeof(struct ma35d1_nand_info),
 };
 
 void board_nand_init(void)
@@ -843,7 +844,7 @@ void board_nand_init(void)
 	int ret;
 
 	/* enable nand clock */
-	ret = uclass_get_device_by_driver(UCLASS_CLK, DM_GET_DRIVER(ma35d1_clk), &dev);
+	ret = uclass_get_device_by_driver(UCLASS_CLK, DM_DRIVER_GET(ma35d1_clk), &dev);
 	if (ret)
 		pr_err("Failed to get nand clock. (error %d)\n", ret);
 
@@ -858,7 +859,7 @@ void board_nand_init(void)
 	}
 
 	ret = uclass_get_device_by_driver(UCLASS_MTD,
-					  DM_GET_DRIVER(ma35d1_nand),
+					  DM_DRIVER_GET(ma35d1_nand),
 					  &dev);
 	if (ret && ret != -ENODEV)
 		pr_err("Failed to initialize ma35d1 NAND controller. (error %d)\n", ret);
