@@ -6,6 +6,7 @@
 #include <common.h>
 #include <clk.h>
 #include <dm.h>
+#include <dm/device_compat.h>
 #include <errno.h>
 #include <asm/gpio.h>
 #include <asm/io.h>
@@ -152,6 +153,6 @@ U_BOOT_DRIVER(ma35d1_gpio) = {
 	.name = "ma35d1_gpio",
 	.id = UCLASS_GPIO,
 	.ops = &ma35d1_gpio_ops,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_gpio_priv),
+	.priv_auto = sizeof(struct ma35d1_gpio_priv),
 	.probe = ma35d1_gpio_probe,
 };

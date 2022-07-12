@@ -1097,7 +1097,7 @@ U_BOOT_DRIVER(ma35d1_clk) = {
 	.id = UCLASS_CLK,
 	.of_match = ma35d1_clk_ids,
 	.ops = &ma35d1_clk_ops,
-	.priv_auto_alloc_size = sizeof(struct __ma35d1_clk_data),
+	.priv_auto = sizeof(struct __ma35d1_clk_data),
 	.probe = ma35d1_clk_probe,
 	.flags = DM_FLAG_PRE_RELOC,
 };

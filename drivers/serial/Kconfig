@@ -912,7 +912,6 @@ config MTK_SERIAL
 	  The High-speed UART is compatible with the ns16550a UART and have
 	  its own high-speed registers.
 
-<<<<<<< HEAD
 config MT7620_SERIAL
 	bool "UART driver for MediaTek MT7620 and earlier SoCs"
 	depends on DM_SERIAL
@@ -922,7 +921,7 @@ config MT7620_SERIAL
 	  binding to operate.
 	  The UART driver for MediaTek MT7620 and earlier SoCs is *NOT*
 	  compatible with the ns16550a UART.
-=======
+
 config NUVOTON_SERIAL
 	bool "Nuvoton UART support"
 	default y
@@ -930,7 +929,6 @@ config NUVOTON_SERIAL
 	  Select this to enable UART support for Nuvoton UART
 	  devices. This driver uses driver model and requires a device
 	  tree binding to operate.
->>>>>>> Add MA35D1 support
 
 config MPC8XX_CONS
 	bool "Console driver for MPC8XX"

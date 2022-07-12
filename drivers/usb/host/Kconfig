@@ -309,16 +309,14 @@ config USB_OHCI_HCD
 	  based system where you're not sure, the "lspci -v" entry will list the
 	  right "prog-if" for your USB controller(s):  EHCI, OHCI, or UHCI.
 
-<<<<<<< HEAD
 if USB_OHCI_HCD
-=======
+
 config SYS_USB_OHCI_MAX_ROOT_PORTS 
 	depends on USB_OHCI_HCD
 	default 8
 	hex "OHCI maximum root ports"
 	help
 	  The maximum number of OHCI root hub ports supported.
->>>>>>> Add MA35D1 support
 
 config USB_OHCI_PCI
 	bool "Support for PCI-based OHCI USB controller"

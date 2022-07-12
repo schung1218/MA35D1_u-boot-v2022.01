@@ -103,7 +103,7 @@ static int ma35d1_serial_getc(struct udevice *dev)
 static int ma35d1_serial_setbrg(struct udevice *dev, int baudrate)
 {
 	struct ma35d1_serial_priv *priv = dev_get_priv(dev);
-	struct ma35d1_serial_platdata *plat = dev_get_platdata(dev);
+	struct ma35d1_serial_platdata *plat = dev_get_plat(dev);
 	struct ma35d1_serial_regs *regs = priv->regs;
 	unsigned int div;
 
@@ -125,7 +125,7 @@ static const struct dm_serial_ops ma35d1_serial_ops = {
 
 static int ma35d1_serial_probe(struct udevice *dev)
 {
-	struct ma35d1_serial_platdata *plat = dev_get_platdata(dev);
+	struct ma35d1_serial_platdata *plat = dev_get_plat(dev);
 	struct ma35d1_serial_priv *priv = dev_get_priv(dev);
 	fdt_addr_t addr;
 
@@ -155,10 +155,10 @@ U_BOOT_DRIVER(serial_ma35d1) = {
 	.name = "serial_ma35d1",
 	.id = UCLASS_SERIAL,
 	.of_match = ma35d1_serial_id,
-	.platdata_auto_alloc_size = sizeof(struct ma35d1_serial_platdata),
+	.plat_auto = sizeof(struct ma35d1_serial_platdata), 
 	.probe = ma35d1_serial_probe,
 	.ops = &ma35d1_serial_ops,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_serial_priv),
+	.priv_auto = sizeof(struct ma35d1_serial_priv), 
 	.flags = DM_FLAG_PRE_RELOC,
 };
 

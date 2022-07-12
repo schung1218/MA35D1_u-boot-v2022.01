@@ -136,6 +136,6 @@ U_BOOT_DRIVER(ma35d1_reset) = {
 	.id			= UCLASS_RESET,
 	.of_match		= ma35d1_reset_ids,
 	.probe			= ma35d1_reset_probe,
-	.priv_auto_alloc_size	= sizeof(struct ma35d1_reset_priv),
+	.priv_auto		= sizeof(struct ma35d1_reset_priv), 
 	.ops			= &ma35d1_reset_ops,
 };

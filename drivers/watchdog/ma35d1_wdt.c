@@ -6,6 +6,7 @@
 #include <common.h>
 #include <clk.h>
 #include <dm.h>
+#include <dm/device_compat.h>
 #include <log.h>
 #include <wdt.h>
 #include <asm/io.h>
@@ -154,7 +155,7 @@ U_BOOT_DRIVER(ma35d1_wdt) = {
 	.name = "ma35d1-wdt",
 	.id = UCLASS_WDT,
 	.of_match = ma35d1_wdt_match,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_wdt_priv),
+	.priv_auto = sizeof(struct ma35d1_wdt_priv),
 	.probe = ma35d1_wdt_probe,
 	.ops = &ma35d1_wdt_ops,
 };

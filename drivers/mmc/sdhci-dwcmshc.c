@@ -24,7 +24,7 @@ struct sdhci_dwcmshc_plat {
 
 static int sdhci_dwcmshc_bind(struct udevice *dev)
 {
-	struct sdhci_dwcmshc_plat *plat = dev_get_platdata(dev);
+	struct sdhci_dwcmshc_plat *plat = dev_get_plat(dev);
 
 	return sdhci_bind(dev, &plat->mmc, &plat->cfg);
 }
@@ -32,7 +32,7 @@ static int sdhci_dwcmshc_bind(struct udevice *dev)
 static int sdhci_dwcmshc_probe(struct udevice *dev)
 {
 	struct mmc_uclass_priv *upriv = dev_get_uclass_priv(dev);
-	struct sdhci_dwcmshc_plat *plat = dev_get_platdata(dev);
+	struct sdhci_dwcmshc_plat *plat = dev_get_plat(dev);
 	struct sdhci_host *host = dev_get_priv(dev);
 	struct clk gate_clk;
 	fdt_addr_t base;
@@ -80,6 +80,6 @@ U_BOOT_DRIVER(sdhci_dwcmshc) = {
 	.bind		= sdhci_dwcmshc_bind,
 	.probe		= sdhci_dwcmshc_probe,
 	.ops		= &sdhci_ops,
-	.priv_auto_alloc_size = sizeof(struct sdhci_host),
-	.platdata_auto_alloc_size = sizeof(struct sdhci_dwcmshc_plat),
+	.priv_auto = sizeof(struct sdhci_host), 
+	.plat_auto = sizeof(struct sdhci_dwcmshc_plat),
 };

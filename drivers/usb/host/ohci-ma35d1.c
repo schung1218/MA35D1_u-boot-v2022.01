@@ -7,6 +7,7 @@
 #include <common.h>
 #include <clk.h>
 #include <dm.h>
+#include <dm/device_compat.h>
 #include <log.h>
 #include <malloc.h>
 #include <usb.h>
@@ -83,7 +84,7 @@ U_BOOT_DRIVER(ohci_generic) = {
 	.probe = ohci_ma35d1_probe,
 	.remove = ohci_deregister,
 	.ops	= &ohci_usb_ops,
-	.platdata_auto_alloc_size = sizeof(struct usb_platdata),
-	.priv_auto_alloc_size = sizeof(struct ma35d1_ohci_priv),
+	.plat_auto = sizeof(struct usb_plat),
+	.priv_auto = sizeof(struct ma35d1_ohci_priv),
 	.flags	= DM_FLAG_ALLOC_PRIV_DMA,
 };

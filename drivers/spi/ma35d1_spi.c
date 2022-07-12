@@ -352,6 +352,6 @@ U_BOOT_DRIVER(ma35d1_qspi) = {
 	.id             = UCLASS_SPI,
 	.of_match       = ma35d1_qspi_ids,
 	.ops            = &ma35d1_qspi_ops,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_qspi),
+//	.priv_auto_alloc_size = sizeof(struct ma35d1_qspi),  //schung
 	.probe          = ma35d1_qspi_probe,
 };

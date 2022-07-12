@@ -12,9 +12,9 @@
 
 #define CONFIG_CPU_ARMV8
 
-#define CONFIG_SYS_LOAD_ADDR			0x81000000
+//#define CONFIG_SYS_LOAD_ADDR			0x81000000
 
-#define CONFIG_SYS_MALLOC_LEN			SZ_2M
+//#define CONFIG_SYS_MALLOC_LEN			SZ_2M
 #define CONFIG_SYS_BOOTM_LEN			SZ_64M
 
 /* Uboot definition */

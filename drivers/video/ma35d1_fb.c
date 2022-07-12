@@ -6,6 +6,7 @@
 
 #include <common.h>
 #include <dm.h>
+#include <dm/device_compat.h>
 #include <log.h>
 #include <video.h>
 #include <asm/io.h>
@@ -245,7 +246,7 @@ static void ma35d1_disp_register_init(struct ma35d1_lcd_info *disp_info,
 
 static int ma35d1_fb_video_probe(struct udevice *dev)
 {
-	struct video_uc_platdata *plat = dev_get_uclass_platdata(dev);
+	struct video_uc_plat *plat = dev_get_uclass_plat(dev);
 	struct video_priv *uc_priv = dev_get_uclass_priv(dev);
 	struct ma35d1_fb_priv *priv = dev_get_priv(dev);
 	struct regmap *regmap, *regmap_sys;
@@ -276,7 +277,7 @@ static int ma35d1_fb_video_probe(struct udevice *dev)
 	}
 
 	/* Use DT timing (resolution) in internal info struct */
-	disp_info.fb_base = plat->base;
+	//disp_info.fb_base = plat->base; //shcung
 	disp_info.x_res = timings.hactive.typ;
 	disp_info.x_fp = timings.hfront_porch.typ;
 	disp_info.x_bp = timings.hback_porch.typ;
@@ -376,7 +377,7 @@ static int ma35d1_fb_video_probe(struct udevice *dev)
 
 static int ma35d1_fb_video_bind(struct udevice *dev)
 {
-	struct video_uc_platdata *uc_plat = dev_get_uclass_platdata(dev);
+	struct video_uc_plat *uc_plat = dev_get_uclass_plat(dev);
 
 	uc_plat->size = LCD_MAX_WIDTH * LCD_MAX_HEIGHT * 4;
 	debug("\n%s: frame buffer max size %d bytes\n", __func__, uc_plat->size);
@@ -395,6 +396,6 @@ U_BOOT_DRIVER(ma35d1_fb) = {
 	.of_match = ma35d1_fb_ids,
 	.probe	= ma35d1_fb_video_probe,
 	.bind	= ma35d1_fb_video_bind,
-	.priv_auto_alloc_size	= sizeof(struct ma35d1_fb_priv),
+	.priv_auto	= sizeof(struct ma35d1_fb_priv),
 	.flags	= DM_FLAG_PRE_RELOC,
 };

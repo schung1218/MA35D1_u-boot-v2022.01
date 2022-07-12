@@ -13,6 +13,7 @@
 #include <syscon.h>
 #include <asm/io.h>
 #include <dm/pinctrl.h>
+#include <dm/device_compat.h>
 #include <linux/bitops.h>
 #include <regmap.h>
 #include "designware.h"
@@ -46,7 +47,7 @@ struct gmac_ma35d1_platdata {
 
 static int gmac_ma35d1_ofdata_to_platdata(struct udevice *dev)
 {
-	struct gmac_ma35d1_platdata *pdata = dev_get_platdata(dev);
+	struct gmac_ma35d1_platdata *pdata = dev_get_plat(dev);
 
 	pdata->id = dev_read_u32_default(dev, "mac-id", 0);
 	pdata->tx_delay = dev_read_u32_default(dev, "tx_delay", -ENOENT);
@@ -57,13 +58,13 @@ static int gmac_ma35d1_ofdata_to_platdata(struct udevice *dev)
 	if (pdata->rx_delay == -ENOENT)
 		pdata->rx_delay = 0;
 
-	return designware_eth_ofdata_to_platdata(dev);
+	return designware_eth_of_to_plat(dev);
 }
 
 static int gmac_ma35d1_probe(struct udevice *dev)
 {
-	struct gmac_ma35d1_platdata *pdata = dev_get_platdata(dev);
-	struct dw_eth_pdata *dw_pdata = dev_get_platdata(dev);
+	struct gmac_ma35d1_platdata *pdata = dev_get_plat(dev);
+	struct dw_eth_pdata *dw_pdata = dev_get_plat(dev);
 	struct eth_pdata *eth_pdata = &dw_pdata->eth_pdata;
 	struct ofnode_phandle_args args;
 	u32 reg;
@@ -134,8 +135,8 @@ static int gmac_ma35d1_probe(struct udevice *dev)
 
 static int ma35d1_read_rom_hwaddr(struct udevice *dev)
 {
-	struct gmac_ma35d1_platdata *pdata = dev_get_platdata(dev);
-	struct eth_pdata *eth_pdata = dev_get_platdata(dev);
+	struct gmac_ma35d1_platdata *pdata = dev_get_plat(dev);
+	struct eth_pdata *eth_pdata = dev_get_plat(dev);
 	u32 reg;
 
 	regmap_read(pdata->regmap,
@@ -173,10 +174,10 @@ U_BOOT_DRIVER(eth_gmac_ma35d1) = {
 	.name	= "gmac_ma35d1",
 	.id	= UCLASS_ETH,
 	.of_match = ma35d1_gmac_ids,
-	.ofdata_to_platdata = gmac_ma35d1_ofdata_to_platdata,
+	.of_to_plat = gmac_ma35d1_ofdata_to_platdata,
 	.probe	= gmac_ma35d1_probe,
 	.ops	= &gmac_ma35d1_eth_ops,
-	.priv_auto_alloc_size = sizeof(struct dw_eth_dev),
-	.platdata_auto_alloc_size = sizeof(struct gmac_ma35d1_platdata),
+	.priv_auto = sizeof(struct dw_eth_dev),
+	.plat_auto = sizeof(struct gmac_ma35d1_platdata),
 	.flags = DM_FLAG_ALLOC_PRIV_DMA,
 };

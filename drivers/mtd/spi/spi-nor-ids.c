@@ -386,6 +386,7 @@ const struct flash_info spi_nor_ids[] = {
 #ifdef CONFIG_SPI_FLASH_XTX
 	/* XTX Technology (Shenzhen) Limited */
 	{ INFO("xt25f128b", 0x0b4018, 0, 64 * 1024, 256, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+#endif
 #ifdef CONFIG_SPI_NAND_WINBOND		/* WINBOND SPI NAND */
 	{ INFO("W25N01GV", 0xefaa21, 0, 64 * 2048,  1024, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
 	{ INFO("W25M02GV", 0xefab21, 0, 64 * 2048,  2048, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },

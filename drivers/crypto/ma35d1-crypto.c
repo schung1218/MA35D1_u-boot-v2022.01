@@ -117,6 +117,6 @@ U_BOOT_DRIVER(crypto_ma35d1) = {
 	.id	= UCLASS_NOP,
 	.of_match = ma35d1_crypto_ids,
 	.bind = ma35d1_crypto_bind,
-	.priv_auto_alloc_size = sizeof(struct ma35d1_crypto_priv),
+	.priv_auto = sizeof(struct ma35d1_crypto_priv),
 	.flags	= DM_FLAG_ALLOC_PRIV_DMA,
 };
