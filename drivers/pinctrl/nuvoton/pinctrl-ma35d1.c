@@ -33,7 +33,7 @@ U_BOOT_DRIVER(pinctrl_nvt) = {
 	.name = "ma35d1-pinctrl",
 	.id = UCLASS_PINCTRL,
 	.of_match = ma35d1_pinctrl_ids,
-//	.priv_auto_alloc_size = sizeof(struct nvt_pinctrl_priv),  //schung
+	.priv_auto = sizeof(struct nvt_pinctrl_priv), 
 	.ops = &nvt_pinctrl_ops,
 	.probe = nvt_pinctrl_probe,
 };
